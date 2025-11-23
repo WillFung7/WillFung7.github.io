@@ -31,8 +31,8 @@ github_username:  WillFung7
 # Build settings
 theme: minima
 header_pages:
-  - index.markdown
-  - contact.md
+  - about.markdown
+  - Contact.md
 plugins:
   - jekyll-feed
 
