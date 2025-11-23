@@ -1,7 +1,6 @@
 ---
-layout: page
 title: "Contact"
-permalink: /about/contact/
+nav_order: 3
 ---
 
 Name: William Fung
