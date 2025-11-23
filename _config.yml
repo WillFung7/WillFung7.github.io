@@ -30,12 +30,14 @@ github_username:  WillFung7
 
 # Build settings
 remote theme: just-the-docs/just-the-docs
-header_pages:
-  - about.markdown
-  - Contact.md
+# header_pages:
+#   - about.markdown
+#   - Contact.md
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
+logo: false
+color_scheme: dark
 
 # Exclude from processing.
 # The following items will not be processed, by default.
