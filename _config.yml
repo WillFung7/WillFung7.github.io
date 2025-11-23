@@ -29,12 +29,13 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  WillFung7
 
 # Build settings
-theme: minima
+remote theme: just-the-docs/just-the-docs
 header_pages:
   - about.markdown
   - Contact.md
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
