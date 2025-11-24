@@ -34,6 +34,18 @@ plugins:
   - jekyll-feed
   - jekyll-remote-theme
 
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+math: mathjax
+
+just_the_docs:
+  collections:
+    projects:
+      name: Projects
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
