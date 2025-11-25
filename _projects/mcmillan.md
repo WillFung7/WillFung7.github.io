@@ -1,55 +1,21 @@
 ---
 title: McMillan Map
 parent: Projects
+has_children: true
 nav_order: 1
 layout: default
+toc: true
 ---
 
-# Sextupole McMillan Map
+McMillan Maps are nonlinear yet integrable discrete maps that take the form:
 
-Interactive contours of
+$$q' = p$$
 
-$$
-K_{SX}(p,q,a) = p^2 - a p q + q^2 + p^2 q + p q^2,
-$$
+$$p' = -q + f(p)$$
 
-with 
+Where
 
-$$
-a = -\frac{2 \epsilon}{\gamma}.
-$$
+$$f(p) = -\frac{B p^2 + 2 \epsilon p + \Xi}{A p^2 + B p + \Gamma}$$
 
----
 
-## Controls
-
-<div style="max-width: 600px;">
-  <label>
-    γ:
-    <input id="gamma-input" type="range" min="-2.0" max="2.0" step="0.05" value="-2.0">
-    <span id="gamma-value">1.00</span>
-  </label>
-  <br>
-  <label>
-    ε:
-    <input id="eps-input" type="range" min="-2.0" max="2.0" step="0.05" value="-0.75">
-    <span id="eps-value">-0.75</span>
-  </label>
-  <br>
-  <label>
-    contour number:
-    <input id="ncontours-input" type="range" min="10" max="50" step="1" value="30">
-    <span id="ncontours-value">30</span>
-  </label>
-  <br>
-  <strong>a = <span id="a-value"></span></strong>
-</div>
-
----
-
-## Contour plot
-
-<div id="mcmillan-plot" style="width: 100%; max-width: 700px; height: 600px;"></div>
-
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="/assets/js/mcmillan.js"></script>
+To read more about Multipole McMillan Maps: [Dynamics of McMillan mappings I. McMillan multipoles](https://arxiv.org/pdf/2405.05652)

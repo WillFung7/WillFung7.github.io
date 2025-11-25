@@ -34,12 +34,12 @@ plugins:
   - jekyll-feed
   - jekyll-remote-theme
 
+math: mathjax
+
 collections:
   projects:
     output: true
     permalink: /projects/:path/
-
-math: mathjax
 
 just_the_docs:
   collections:
