@@ -7,10 +7,11 @@ layout: default
 toc: true
 ---
 
+# McMillan Maps
+
 McMillan Maps are nonlinear yet integrable discrete maps that take the form:
 
 $$q' = p$$
-
 $$p' = -q + f(p)$$
 
 Where
