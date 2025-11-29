@@ -9,7 +9,7 @@ layout: default
 
 Derivations from Luminosity Page
 
-## 1. Luminosity of Round, Gaussian Beams
+## 1a. Luminosity of Round, Gaussian Beams
 
 Starting from this definition of Luminosity:
 
@@ -42,7 +42,7 @@ $$\Rightarrow \mathcal{L} =
 \frac{1}{(2\pi)^3(\sigma_x\sigma_y\sigma_z)^2}\exp(-(\frac{x}{\sigma_x})^2 + (\frac{y}{\sigma_y})^2 + (\frac{s}{\sigma_z})^2 + (\frac{s_0}{\sigma_z})^2) dx dy ds ds_0$$\
 $$\Rightarrow \mathcal{L}  = \frac{fN_1N_2N_b}{4\pi\sigma_x\sigma_y}$$
 
-## 2. Luminosity of two different short bunches:
+## 1b. Luminosity of two different short bunches:
 $$\sigma_{x1} \neq \sigma_{x2}$$\
 $$\sigma_{y1} \neq \sigma_{y2}$$\
 $$\sigma_{z1} = \sigma_{z2} = \sigma_{z}$$

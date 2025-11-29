@@ -12,6 +12,7 @@ toc: true
 McMillan Maps are nonlinear yet integrable discrete maps that take the form:
 
 $$q' = p$$
+
 $$p' = -q + f(p)$$
 
 Where
