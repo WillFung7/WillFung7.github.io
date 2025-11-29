@@ -16,30 +16,28 @@ Starting from this definition of Luminosity:
 $$ \mathcal{L} = KfN_1N_2N_b\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} \rho_1(x, y, s, -s_0) \rho_2(x, y, s, s_0) dx dy ds ds_0$$
 
 For a gaussian distribution for one beam:\
-$$\rho(x, y, z) = \frac{1}{(2\pi)^{3/2}\sigma_x\sigma_y\sigma_z}\exp(-\frac{1}{2}((\frac{x}{\sigma_x})^2 + (\frac{y}{\sigma_y})^2 + (\frac{z}{\sigma_z})^2))$$
+$$\rho_{iz}(z) = \frac{1}{\sqrt{2\pi}\sigma_{iz}}\exp(-\frac{z^2}{\sigma_{iz}}); i = 1,2; z = x, y$$\
+$$\rho_{is}(s, s_0) = \frac{1}{\sqrt{2\pi}\sigma_{is}}\exp(-\frac{(s + s_0)^2}{\sigma_{is}}); i = 1,2$$
 
 For two beams heading toward each other ($$v_1 = - v_2$$), then $$K = 2$$
 
 And assumming a round beam:\
 $$\sigma_{x1} = \sigma_{x2} = \sigma_{x}$$ = constant\
 $$\sigma_{y1} = \sigma_{y2} = \sigma_{y}$$ = constant\
-$$\sigma_{z1} = \sigma_{z2} = \sigma_{z}$$ = constant
+$$\sigma_{s1} = \sigma_{s2} = \sigma_{s}$$ = constant
 
 Then:\
-$$\rho_1\rho_2 = \frac{1}{(2\pi)^3(\sigma_x\sigma_y\sigma_z)^2}\exp(-(\frac{x}{\sigma_x})^2 + (\frac{y}{\sigma_y})^2 + \frac{1}{2}((\frac{z_1}{\sigma_{z}})^2 + (\frac{z_2}{\sigma_{z}})^2))$$
-
-$$2s = z_1 - z_2$$\
-$$2s_0 = -z_1 - z_2$$\
-$$\Rightarrow z_2 = -s - s_0 $$ and $$ z_1 = s - s_0$$
-
 $$ \Rightarrow \rho_1\rho_2 = \frac{1}{(2\pi)^3(\sigma_x\sigma_y\sigma_z)^2}\exp(-(\frac{x}{\sigma_x})^2 + (\frac{y}{\sigma_y})^2 + \frac{(s + s_0)^2 + (s - s_0)^2}{2\sigma_z^2})$$\
 $$= \frac{1}{(2\pi)^3(\sigma_x\sigma_y\sigma_z)^2}\exp(-(\frac{x}{\sigma_x})^2 + (\frac{y}{\sigma_y})^2 + \frac{s^2 + 2ss_0 + s_0^2 + s^2 - 2ss_0 + s_0^2}{2\sigma_z^2})$$\
-$$= \frac{1}{(2\pi)^3(\sigma_x\sigma_y\sigma_z)^2}\exp(-(\frac{x}{\sigma_x})^2 + (\frac{y}{\sigma_y})^2 + (\frac{s}{\sigma_z})^2 + (\frac{s_0}{\sigma_z})^2)$$
-
-And:\
+$$= \frac{1}{(2\pi)^3(\sigma_x\sigma_y\sigma_z)^2}\exp(-(\frac{x}{\sigma_x})^2 + (\frac{y}{\sigma_y})^2 + (\frac{s}{\sigma_z})^2 + (\frac{s_0}{\sigma_z})^2)$$\
 $$\Rightarrow \mathcal{L} = 
-2fN_1N_2N_b\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
-\frac{1}{(2\pi)^3(\sigma_x\sigma_y\sigma_z)^2}\exp(-(\frac{x}{\sigma_x})^2 + (\frac{y}{\sigma_y})^2 + (\frac{s}{\sigma_z})^2 + (\frac{s_0}{\sigma_z})^2) dx dy ds ds_0$$\
+\frac{2fN_1N_2N_b}{(2\pi)^3(\sigma_x\sigma_y\sigma_z)^2}
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+\exp(-(\frac{x}{\sigma_x})^2 + (\frac{y}{\sigma_y})^2 + (\frac{s}{\sigma_z})^2 + (\frac{s_0}{\sigma_z})^2) dx dy ds ds_0$$
+
+Using:\
+$$\int_{-\infty}^{\infty}\exp(-ax^2)dx = \sqrt{\frac{\pi}{a}}$$\
+We arrive at:\
 $$\Rightarrow \mathcal{L}  = \frac{fN_1N_2N_b}{4\pi\sigma_x\sigma_y}$$
 
 ## 1b. Luminosity of two different short bunches:
@@ -53,6 +51,52 @@ $$\Rightarrow \sigma_i = \sqrt{\frac{1}{2}(\sigma_{i1}^2 + \sigma_{i2}^2)}$$
 Then from 1:\
 $$\Rightarrow \mathcal{L} = \frac{fN_1N_2N_b}{4\pi\sqrt{\frac{1}{2}(\sigma_{x1}^2 + \sigma_{x2}^2)}\sqrt{\frac{1}{2}(\sigma_{y1}^2 + \sigma_{y2}^2)}}$$
 $$= \frac{fN_1N_2N_b}{2\pi\sqrt{\sigma_{x_1}^2 + \sigma_{x_2}^2}\sqrt{\sigma_{y_1}^2 + \sigma_{y_2}^2}}$$
+
+## 2. Crossing Angle For Round Gaussian Beams
+
+The rotation matrices explicitly give the following transformations:
+
+$$ x_1 = x \cos \frac{\phi}{2} - s \sin \frac{\phi}{2}$$\
+$$ x_2 = x \cos \frac{\phi}{2} + s \sin \frac{\phi}{2}$$\
+$$ s_1 = s \cos \frac{\phi}{2} + x \sin \frac{\phi}{2}$$\
+$$ s_2 = s \cos \frac{\phi}{2} - x \sin \frac{\phi}{2}$$
+
+For crossing angle case: $$K = 2\cos^2(\frac{\phi}{2})$$\
+$$ \Rightarrow \mathcal{L} = \frac{2\cos^2(\frac{\phi}{2})fN_1N_2N_b}{(2\pi)^3(\sigma_x\sigma_y\sigma_s)^2}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} 
+\exp(-\frac{(x_1^2 + x_2^2)}{2\sigma_x^2})
+\exp(-\frac{y^2}{\sigma_y^2})
+\exp(-\frac{(s_1 - s_0)^2 + (s_2 + s_0)^2}{2\sigma_s^2}) dx dy ds ds_0$$
+
+Integrate wrt $$y$$:\
+$$ \Rightarrow \mathcal{L} = \frac{\cos^2(\frac{\phi}{2})fN_1N_2N_b}{4\pi^{5/2}(\sigma_x\sigma_s)^2\sigma_y}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} 
+\exp(-\frac{(x_1^2 + x_2^2)}{2\sigma_x^2})
+\exp(-\frac{(s_1 - s_0)^2 + (s_2 + s_0)^2}{2\sigma_s^2}) dx ds ds_0$$\
+$$ \Rightarrow \mathcal{L} = \frac{\cos^2(\frac{\phi}{2})fN_1N_2N_b}{4\pi^{5/2}(\sigma_x\sigma_s)^2\sigma_y}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} 
+\exp(-\frac{(x_1^2 + x_2^2)}{2\sigma_x^2})
+\exp(-\frac{s_1^2 + s_2^2 + 2s_0^2 + 2s_0(s_2 - s_1)}{2\sigma_s^2}) dx ds ds_0$$\
+Using:\
+$$\int_{-\infty}^{\infty}\exp(-(ax^2 + bx + c))dx = \sqrt{\frac{\pi}{a}}\exp(\frac{b^2}{4a} - c)$$\
+To integrate over $$s_0$$:\
+$$ \Rightarrow \mathcal{L} = \frac{\cos^2(\frac{\phi}{2})fN_1N_2N_b}{4\pi^2\sigma_x^2\sigma_y\sigma_s}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} 
+\exp(-\frac{x_1^2 + x_2^2}{2\sigma_x^2})
+\exp(\frac{(s_2 - s_1)^2}{4\sigma_s^2} - \frac{s_1^2 + s_2^2}{2\sigma_s^2}) dx ds$$\
+Substitute change of coordinates and simplifying:\
+$$ \Rightarrow \mathcal{L} = \frac{\cos^2(\frac{\phi}{2})fN_1N_2N_b}{4\pi^2\sigma_x^2\sigma_y\sigma_s}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} 
+\exp(-\frac{x^2\cos(\frac{\phi}{2})}{\sigma_x^2})
+\exp(-s^2(\frac{\sin(\frac{\phi}{2})}{\sigma_x^2} + \frac{\cos(\frac{\phi}{2})}{\sigma_s^2})) dx ds$$\
+Integrate wrt $$x$$:\
+$$ \Rightarrow \mathcal{L} = \frac{\cos(\frac{\phi}{2})fN_1N_2N_b}{4\pi^{3/2}\sigma_x\sigma_y\sigma_s}\int_{-\infty}^{\infty} 
+\exp(-s^2(\frac{\sin(\frac{\phi}{2})}{\sigma_x^2} + \frac{\cos(\frac{\phi}{2})}{\sigma_s^2})) ds$$\
+If $$\sigma_x, \sigma_y$$ depend on $$s$$ due to hourglass effect, the expression can no longer be simplified, and $$\sigma_x, \sigma_y$$ go in the $$s$$ integrand.\
+Integrate wrt $$s$$ for constant $$\sigma_x, \sigma_y$$:\
+$$ \Rightarrow \mathcal{L} = \frac{\cos(\frac{\phi}{2})fN_1N_2N_b}{4\pi\sigma_x\sigma_y\sigma_s}(\frac{\sin(\frac{\phi}{2})}{\sigma_x^2} + \frac{\cos(\frac{\phi}{2})}{\sigma_s^2})^{-\frac12}$$\
+Simplifiying further gives:\
+$$ \Rightarrow \mathcal{L} = \frac{fN_1N_2N_b}{4\pi\sigma_x\sigma_y}\frac{1}{\sqrt{1 + (\frac{\sigma_s}{\sigma_x})^2\tan^2(\frac{\phi}{2})}}$$\
+Finally:\
+$$ \mathcal{L_{CA}} = L_0 S(\phi)$$
+
+
+
 
 Sources: 
 [https://cds.cern.ch/record/941318/files/p361.pdf](https://cds.cern.ch/record/941318/files/p361.pdf)
