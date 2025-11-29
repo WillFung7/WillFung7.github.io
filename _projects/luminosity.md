@@ -43,7 +43,7 @@ $$\mathcal{L_{0xy}} = \frac{fN_1N_2N_b}{2\pi\sqrt{\sigma_{x_1}^2 + \sigma_{x_2}^
 
 To avoid unwanted collisions and/or because of machine error, the beams can come at an angles with respect to the beam trajectory:
 
-![colliding_beams](/assets/images/luminosity/colliding_beams_CA.png)
+![colliding_beams_CA](/assets/images/luminosity/colliding_beams_CA.png)
 
 Where $$\phi$$ is the crossing angle. A change of coordinates is used via the rotation matrix in the tilted ($$xs$$) plane. The plane is rotated by $$\frac{\phi}{2}$$ for beam 1 which yields the ($$x_1s_1$$) plane, and $$-\frac{\phi}{2}$$ for beam 2 which yields the ($$x_2s_2$$) plane:
 
@@ -88,7 +88,7 @@ For small $$\phi$$, typically on the order of milliradians for most colliders, t
 
 In reality, the transverse beam size $$\sigma_{iz} = \sqrt{\beta_{iz}\epsilon_{iz}}$$ is not constant and depends on the beta function. However, we can model the beta function the interaction region since it is a drift space (no magnets are present):
 
-![colliding_beams](/assets/images/luminosity/Beta_function_IR.png)
+![Beta_function_IR](/assets/images/luminosity/Beta_function_IR.png)
 
 The beta function here is designed to get the beam transverse size as small as possible for higher collision rates, as the beam sizes are in the denominator of $$\mathcal{L}$$. This particularly intense squeezing of the beam near the Interaction Point is known as beta squeeze or the hourglass effect due to the shape of the beta function.
 
