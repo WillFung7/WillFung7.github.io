@@ -90,16 +90,65 @@ In reality, the transverse beam size $$\sigma_{iz} = \sqrt{\beta_{iz}\epsilon_{i
 
 ![Beta_function_IR](/assets/images/luminosity/Beta_function_IR.png)
 
-The beta function here is designed to get the beam transverse size as small as possible for higher collision rates, as the beam sizes are in the denominator of $$\mathcal{L}$$. This particularly intense squeezing of the beam near the Interaction Point is known as beta squeeze or the hourglass effect due to the shape of the beta function.
+Where the beams are still tilted. The beta function here is designed to get the beam transverse size as small as possible for higher collision rates, as the beam sizes are in the denominator of $$\mathcal{L}$$. This particularly intense squeezing of the beam near the Interaction Point is known as beta squeeze or the hourglass effect due to the shape of the beta function.
 
 Since $$\sigma_{iz}$$ depends on $$s$$, $$\sigma_{iz}$$ is evaluated within the $$s$$ integral, and the final integral with respect to $$s$$ cannot be done in terms of elementary functions:
 
 $$ \mathcal{L_{CA, HG}} = \frac{\cos(\frac{\phi}{2})fN_1N_2N_b}{4\pi^{3/2}\sigma_s}\int_{-\infty}^{\infty} 
 \frac{1}{\sigma_x(s)\sigma_y(s)}\exp(-s^2(\frac{\sin(\frac{\phi}{2})}{\sigma_x^2(s)} + \frac{\cos(\frac{\phi}{2})}{\sigma_s^2})) ds$$
 
+## 3. $$s^*$$
 
+In most cases, the beta function is not exactly centered at $$s = 0$$ (Interaction Point), but somewhere near called $$s^*$$, or the location of the minimum of the beta function. This can be added into the beta function equation as a displacement from s:
 
+![Beta_function_IR_sstar](/assets/images/luminosity/Beta_function_IR_sstar.png)
 
+The luminosity still takes the same form as $$L_{CA, HG}$$, but now it depends on $$s^*_{iz}; z = x, y$$. Accelerator physicists move the collision location to match $$s^*$$ to maximize the luminosity. This is done by tuning the quadrupole strengths around the interaction region. 
+
+---
+
+## Luminosity Plot
+
+<div id="luminosity" style="width: 100%; max-width: 700px; height: 600px;"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="/assets/js/luminosity/luminosity.js"></script>
+
+<div style="max-width: 600px;">
+  <label>
+    \( \beta^*_x \):
+    <input id="bsx-input" type="range" min="0.10" max="5.00" step="0.05" value="0.70">
+    <span id="bsx-value">0.70</span>
+  </label>
+  <br>
+  <label>
+    \( \beta^*_y \):
+    <input id="bsy-input" type="range" min="0.10" max="5.00" step="0.05" value="0.70">
+    <span id="bsy-value">0.70</span>
+  </label>
+  <br>
+
+  <label>
+    \( s^*_x \):
+    <input id="ssx-input" type="range" min="-0.50" max="0.50" step="0.05" value="0.00">
+    <span id="ssx-value">0.00</span>
+  </label>
+  <br>
+  <label>
+    \( s^*_y \):
+    <input id="ssy-input" type="range" min="-0.50" max="0.50" step="0.05" value="0.00">
+    <span id="ssy-value">0.00</span>
+  </label>
+  <br>
+  <label>
+    \( \sigma_s \):
+    <input id="sig-input" type="range" min="0.10" max="0.50" step="0.05" value="0.20">
+    <span id="sig-value">0.20</span>
+  </label>
+  <br>
+  
+  <!-- <strong>a = <span id="a-value"></span></strong> -->
+</div>
 
 
 <!-- $$ \frac{dR}{dt} = \mathcal{L} \sigma_p$$

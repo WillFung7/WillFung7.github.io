@@ -21,7 +21,12 @@ $$
 
 ---
 
-## Controls
+## Contour plot
+
+<div id="mcmillan-plot" style="width: 100%; max-width: 700px; height: 600px;"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="/assets/js/mcmillan/octupole_mcmillan.js"></script>
 
 <div style="max-width: 600px;">
   <label>
@@ -44,12 +49,3 @@ $$
   <br>
   <strong>a = <span id="a-value"></span></strong>
 </div>
-
----
-
-## Contour plot
-
-<div id="mcmillan-plot" style="width: 100%; max-width: 700px; height: 600px;"></div>
-
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="/assets/js/octupole_mcmillan.js"></script>

@@ -1,11 +1,11 @@
-// assets/js/sextupole_mcmillan.js
+// assets/js/mcmillan/octupole_mcmillan.js
 
 function K0(p, q, a) {
   return p * p - a * p * q + q * q;
 }
 
-function KSX(p, q, a) {
-  return K0(p, q, a) + p * p * q + p * q * q;
+function KDO(p, q, a) {
+  return K0(p, q, a) - p * p * q * q;
 }
 
 // Build 1D linspace
@@ -30,7 +30,7 @@ function computeGrid(a, pMin, pMax, qMin, qMax, n) {
     const p = P[i];
     for (let j = 0; j < n; j++) {
       const q = Q[j];
-      Z[i][j] = KSX(p, q, a);
+      Z[i][j] = KDO(p, q, a);
     }
   }
 
@@ -87,11 +87,11 @@ function initMcMillanPlot() {
         coloring: "heatmap",
         showlines: true
       },
-      colorbar: { title: "K_SX" }
+      colorbar: { title: "K_DO" }
     };
 
     const layout = {
-      title: `Sextupole McMillan Map, a = ${a.toFixed(3)}`,
+      title: `Defocusing Octupole McMillan Map, a = ${a.toFixed(3)}`,
       xaxis: { title: "q", scaleanchor: "y", scaleratio: 1 },
       yaxis: { title: "p" },
       margin: { t: 40, r: 10, l: 60, b: 50 }
