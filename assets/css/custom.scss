@@ -1,0 +1,14 @@
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.control-row input[type="range"] {
+  width: 250px;
+}
+
+.control-row.disabled {
+  opacity: 0.4;
+}

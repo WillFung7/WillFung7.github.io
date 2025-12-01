@@ -115,39 +115,64 @@ The luminosity still takes the same form as $$L_{CA, HG}$$, but now it depends o
 <script src="/assets/js/luminosity/luminosity.js"></script>
 
 <div style="max-width: 600px;">
-  <label>
-    \( \beta^*_x \):
-    <input id="bsx-input" type="range" min="0.10" max="5.00" step="0.05" value="0.70">
-    <span id="bsx-value">0.70</span>
-  </label>
+  <div class="control-row">
+    <input type="radio" name="scan-param"     id="scan-bsx" value="bsx">
+    <label>
+        \( \beta^*_x \):
+        <input id="bsx-input" type="range" min="0.10" max="5.00" step="0.05" value="0.70">
+        <span id="bsx-value">0.70</span>
+    </label>
+  </div>
   <br>
-  <label>
-    \( \beta^*_y \):
-    <input id="bsy-input" type="range" min="0.10" max="5.00" step="0.05" value="0.70">
-    <span id="bsy-value">0.70</span>
-  </label>
+  <div class="control-row">
+    <input type="radio" name="scan-param"     id="scan-bsy" value="bsy">
+    <label>
+        \( \beta^*_y \):
+        <input id="bsy-input" type="range" min="0.10" max="5.00" step="0.05" value="0.70">
+        <span id="bsy-value">0.70</span>
+    </label>
+  </div>
   <br>
+  <div class="control-row">
+    <input type="radio" name="scan-param"     id="scan-ssx" value="ssx">
+    <label>
+        \( s^*_x \):
+        <input id="ssx-input" type="range" min="-1.00" max="1.00" step="0.05" value="0.00">
+        <span id="ssx-value">0.00</span>
+    </label>
+  </div>
+  <br>
+  <div class="control-row">
+    <input type="radio" name="scan-param"     id="scan-ssy" value="ssy">
+    <label>
+        \( s^*_y \):
+        <input id="ssy-input" type="range" min="-1.00" max="1.00" step="0.05" value="0.00">
+        <span id="ssy-value">0.00</span>
+    </label>
+  </div>
+  <br>
+  <div class="control-row">
+    <input type="radio" name="scan-param"     id="scan-sig" value="sig">
+    <label>
+        \( \sigma_s \):
+        <input id="sig-input" type="range" min="0.10" max="0.50" step="0.05" value="0.20">
+        <span id="sig-value">0.20</span>
+    </label>
+  </div>
+  <br>
+  <div class="control-row">
+    <input type="radio" name="scan-param" id="scan-phi" value="phi" checked>
+    <label for="phi-input">
+      \( \phi_c \):
+      <input id="phi-input" type="range" min="0.0" max="0.005" step="0.0005" value="0.002">
+      <span id="phi-value">0.002</span>
+    </label>
+  </div>
 
-  <label>
-    \( s^*_x \):
-    <input id="ssx-input" type="range" min="-0.50" max="0.50" step="0.05" value="0.00">
-    <span id="ssx-value">0.00</span>
-  </label>
-  <br>
-  <label>
-    \( s^*_y \):
-    <input id="ssy-input" type="range" min="-0.50" max="0.50" step="0.05" value="0.00">
-    <span id="ssy-value">0.00</span>
-  </label>
-  <br>
-  <label>
-    \( \sigma_s \):
-    <input id="sig-input" type="range" min="0.10" max="0.50" step="0.05" value="0.20">
-    <span id="sig-value">0.20</span>
-  </label>
-  <br>
-  
-  <!-- <strong>a = <span id="a-value"></span></strong> -->
+  <button id="reset-button" style="margin-top: 10px;">
+  RESET
+  </button>
+ 
 </div>
 
 
