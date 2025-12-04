@@ -1,5 +1,5 @@
 ---
-title: Projects
+title: 0. Projects
 nav_order: 4
 has_children: true
 layout: default

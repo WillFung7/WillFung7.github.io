@@ -1,8 +1,8 @@
 ---
-title: McMillan Map
-parent: Projects
+title: 3. McMillan Map
+parent: 0. Projects
 has_children: true
-nav_order: 1
+nav_order: 3
 layout: default
 toc: true
 ---

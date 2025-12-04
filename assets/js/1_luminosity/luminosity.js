@@ -295,7 +295,7 @@ function updatePlot() {
       type: "line",
       x0: xvert,
       x1: xvert,
-      yref: "paper",  // use full vertical span of the plot
+      yref: "paper",
       y0: 0,
       y1: 1,
       line: {
@@ -305,9 +305,9 @@ function updatePlot() {
       }
     });
   }
-
+  
   const layout = {
-    title: "Luminosity vs " + xLabel,
+    title: { text: "Luminosity with Crossing Angle and Hourglass Effects" },
     xaxis: { title: xLabel },
     yaxis: { title: "Luminosity (cm⁻¹ s⁻¹)" },
     shapes: shapes

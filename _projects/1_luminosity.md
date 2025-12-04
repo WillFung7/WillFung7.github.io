@@ -1,6 +1,6 @@
 ---
-title: Luminosity
-parent: Projects
+title: 1. Luminosity
+parent: 0. Projects
 has_children: true
 nav_order: 1
 layout: default
@@ -11,7 +11,7 @@ toc: false
 
 Colliders drive physics experiments with high energy collisions from two beams traveling at near light speeds. Luminosity is an important measurement of performance in colliders. It is defined as the number of useful interaction events during collision. At the Interaction Region (IR), two beam bunches collide like so:
 
-![colliding_beams](/assets/images/luminosity/colliding_beams.png)
+![colliding_beams](/assets/images/1_luminosity/colliding_beams.png)
 
 From this, we can calulate the number of useful interactions by summing up where the particles meet (product) over space and time (4-dimensional integral):
 
@@ -43,7 +43,7 @@ $$\mathcal{L_{0xy}} = \frac{fN_1N_2N_b}{2\pi\sqrt{\sigma_{x_1}^2 + \sigma_{x_2}^
 
 To avoid unwanted collisions and/or because of machine error, the beams can come at an angles with respect to the beam trajectory:
 
-![colliding_beams_CA](/assets/images/luminosity/colliding_beams_CA.png)
+![colliding_beams_CA](/assets/images/1_luminosity/colliding_beams_CA.png)
 
 Where $$\phi$$ is the crossing angle. A change of coordinates is used via the rotation matrix in the tilted ($$xs$$) plane. The plane is rotated by $$\frac{\phi}{2}$$ for beam 1 which yields the ($$x_1s_1$$) plane, and $$-\frac{\phi}{2}$$ for beam 2 which yields the ($$x_2s_2$$) plane:
 
@@ -88,7 +88,7 @@ For small $$\phi$$, typically on the order of milliradians for most colliders, t
 
 In reality, the transverse beam size $$\sigma_{iz} = \sqrt{\beta_{iz}\epsilon_{iz}}$$ is not constant and depends on the beta function. However, we can model the beta function the interaction region since it is a drift space (no magnets are present):
 
-![Beta_function_IR](/assets/images/luminosity/Beta_function_IR.png)
+![Beta_function_IR](/assets/images/1_luminosity/Beta_function_IR.png)
 
 Where the beams are still tilted. The beta function here is designed to get the beam transverse size as small as possible for higher collision rates, as the beam sizes are in the denominator of $$\mathcal{L}$$. This particularly intense squeezing of the beam near the Interaction Point is known as beta squeeze or the hourglass effect due to the shape of the beta function.
 
@@ -101,7 +101,7 @@ $$ \mathcal{L_{CA, HG}} = \frac{\cos(\frac{\phi}{2})fN_1N_2N_b}{4\pi^{3/2}\sigma
 
 In most cases, the beta function is not exactly centered at $$s = 0$$ (Interaction Point), but somewhere near called $$s^*$$, or the location of the minimum of the beta function. This can be added into the beta function equation as a displacement from s:
 
-![Beta_function_IR_sstar](/assets/images/luminosity/Beta_function_IR_sstar.png)
+![Beta_function_IR_sstar](/assets/images/1_luminosity/Beta_function_IR_sstar.png)
 
 The luminosity still takes the same form as $$L_{CA, HG}$$, but now it depends on $$s^*_{iz}; z = x, y$$. Accelerator physicists move the collision location to match $$s^*$$ to maximize the luminosity. This is done by tuning the quadrupole strengths around the interaction region. 
 
@@ -112,7 +112,7 @@ The luminosity still takes the same form as $$L_{CA, HG}$$, but now it depends o
 <div id="luminosity" style="width: 100%; max-width: 700px; height: 600px;"></div>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="/assets/js/luminosity/luminosity.js"></script>
+<script src="/assets/js/1_luminosity/luminosity.js"></script>
 
 <div style="max-width: 600px;">
   <div class="control-row">
