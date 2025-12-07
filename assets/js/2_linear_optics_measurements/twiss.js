@@ -21,11 +21,9 @@ function generate_ellipse_from_twiss(alpha, beta, eps, N, p0 = 0.0){
 const DEFAULTS = {
   alf: 0.0,
   bet: 0.5,
-  eps: 0.001,
+  eps: 0.005,
   N: 2500
 };
-// let AXIS_RANGE = [-0.1, 0.1]
-
 
 function getElem(id) {
   return document.getElementById(id);
@@ -130,17 +128,6 @@ function updatePlot() {
   if (gamSpan) gamSpan.textContent = gam.toFixed(4);
 
   const [q, p] = generate_ellipse_from_twiss(alf, bet, eps, N, 0.0);
-  
-  // compute axis range once (or set a hard-coded range)
-//   if (AXIS_RANGE === null) {
-//     const maxQ = q.length ? Math.max(...q.map(Math.abs)) : 1;
-//     const maxP = p.length ? Math.max(...p.map(Math.abs)) : 1;
-//     const maxAbs = Math.max(maxQ, maxP, 1e-3);
-//     const margin = 1.1;
-//     const R = maxAbs * margin;
-//     AXIS_RANGE = [-R, R];
-//     AXIS_RANGE = []
-//   }
 
   const trace = {
     x: q,

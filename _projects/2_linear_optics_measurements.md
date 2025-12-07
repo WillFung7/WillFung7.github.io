@@ -25,14 +25,14 @@ $$\alpha$$: Tilt of the ellipse\
 $$\gamma$$: Height of the ellipse\
 $$\epsilon$$: Area of the ellipse
 
-$$\epsilon$$ is not a twiss parameter, but an invariant containing all the twiss parameters. This invariant describes the equation of an ellipse:
+Changing the twiss parameters around shows that $$\beta$$ is not only changing the width, and that $$\alpha$$ is not only changing the tilt, but that is only what is generally done to the beam's phase space. $$\epsilon$$ is not a twiss parameter, but an invariant containing all the twiss parameters. This invariant describes the equation of an ellipse:
 
 $$\epsilon = \gamma x^2 + 2\alpha x x' + \beta x'^2 $$
 
 <hr />
 
 ## Twiss Plot
-This is an interactive plot of the twiss parameters in relationship to the phase space of the beam. The user can also choose between distribution types.
+This is an interactive plot of the twiss parameters in relationship to the phase space of the beam. The user can also choose between distribution types. 
 
 <div id="twiss" style="width: 100%; max-width: 700px; height: 600px;"></div>
 
@@ -56,8 +56,8 @@ This is an interactive plot of the twiss parameters in relationship to the phase
     <br>
     <label>
         \( \epsilon \):
-        <input id="eps-input" type="range" min="0.0005" max=".01" step="0.0005" value="0.001">
-        <span id="eps-value">0.001</span>
+        <input id="eps-input" type="range" min="0.0005" max=".01" step="0.0005" value="0.005">
+        <span id="eps-value">0.005</span>
     </label>
     <br>
     <label>
@@ -73,6 +73,6 @@ This is an interactive plot of the twiss parameters in relationship to the phase
 
 <hr />
 
-The linear optics we are then measuring will mostly refer to the beta function. This is the beta value at every point of the ring, and it depends on the placement of the magnets as well as the beam quality.
+The linear optics we are then measuring from BPMs are primarily the beta function. This is the beta value at every point of the ring, and it depends on the placement of the magnets as well as the properties of the beam.
 
-At interaction regions, the beta function before and after are large so that in between them (interaction point), the beta function is relatively small compared to the rest of the ring. This makes the transverse beam size small, and thus the luminosity larger.
+At interaction regions, the beta function before and after are set to be large so that in between them (interaction point), the beta function is relatively small compared to the rest of the ring. This makes the transverse beam size small so that when opposing beams collider, the luminosity is relatively larger.
