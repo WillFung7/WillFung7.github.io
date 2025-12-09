@@ -58,10 +58,96 @@ const DEFAULTS = {
   activeParam: "phi"
 };
 
+let savedState = null; // { bsx, bsy, ssx, ssy, sig, phi, x, y }
+
 let activeParam = "phi"; // which param we’re scanning over
 
 function getElem(id) {
   return document.getElementById(id);
+}
+
+function saveState() {
+  const bsx = parseFloat(getElem("bsx-input").value);
+  const bsy = parseFloat(getElem("bsy-input").value);
+  const ssx = parseFloat(getElem("ssx-input").value);
+  const ssy = parseFloat(getElem("ssy-input").value);
+  const sig = parseFloat(getElem("sig-input").value);
+  const phi = parseFloat(getElem("phi-input").value);
+
+  const N = 100;
+  const x = [];
+  const y = [];
+
+  // Recompute current plot data based on activeParam
+  const computeData = () => {
+    if (activeParam === "phi" || !activeParam) {
+      const min = 0.00, max = 0.005;
+      for (let i = 0; i <= N; i++) {
+        const phi_i = min + (max - min) * i / N;
+        const L = LuminosityIntegral(FREQ, N1, N2, ssx, ssy, bsx, bsy, EX, EY, sig, phi_i, NEG_INF, POS_INF) * CONVERSION;
+        x.push(phi_i);
+        y.push(L);
+      }
+    } else if (activeParam === "bsx") {
+      const min = 0.10, max = 5.00;
+      for (let i = 0; i <= N; i++) {
+        const bsx_i = min + (max - min) * i / N;
+        const L = LuminosityIntegral(FREQ, N1, N2, ssx, ssy, bsx_i, bsy, EX, EY, sig, phi, NEG_INF, POS_INF) * CONVERSION;
+        x.push(bsx_i);
+        y.push(L);
+      }
+    } else if (activeParam === "bsy") {
+      const min = 0.10, max = 5.00;
+      for (let i = 0; i <= N; i++) {
+        const bsy_i = min + (max - min) * i / N;
+        const L = LuminosityIntegral(FREQ, N1, N2, ssx, ssy, bsx, bsy_i, EX, EY, sig, phi, NEG_INF, POS_INF) * CONVERSION;
+        x.push(bsy_i);
+        y.push(L);
+      }
+    } else if (activeParam === "ssx") {
+      const min = -1.0, max = 1.0;
+      for (let i = 0; i <= N; i++) {
+        const ssx_i = min + (max - min) * i / N;
+        const L = LuminosityIntegral(FREQ, N1, N2, ssx_i, ssy, bsx, bsy, EX, EY, sig, phi, NEG_INF, POS_INF) * CONVERSION;
+        x.push(ssx_i);
+        y.push(L);
+      }
+    } else if (activeParam === "ssy") {
+      const min = -1.0, max = 1.0;
+      for (let i = 0; i <= N; i++) {
+        const ssy_i = min + (max - min) * i / N;
+        const L = LuminosityIntegral(FREQ, N1, N2, ssx, ssy_i, bsx, bsy, EX, EY, sig, phi, NEG_INF, POS_INF) * CONVERSION;
+        x.push(ssy_i);
+        y.push(L);
+      }
+    } else if (activeParam === "sig") {
+      const min = 0.1, max = 0.5;
+      for (let i = 0; i <= N; i++) {
+        const sig_i = min + (max - min) * i / N;
+        const L = LuminosityIntegral(FREQ, N1, N2, ssx, ssy, bsx, bsy, EX, EY, sig_i, phi, NEG_INF, POS_INF) * CONVERSION;
+        x.push(sig_i);
+        y.push(L);
+      }
+    }
+  };
+
+  computeData();
+  savedState = { bsx, bsy, ssx, ssy, sig, phi, x, y, activeParam: activeParam || "phi" };
+  updateSavedStateLabel();
+  updatePlot();
+}
+
+function updateSavedStateLabel() {
+  const label = getElem("saved-state-label");
+  if (!label) return;
+
+  if (!savedState) {
+    label.textContent = "No saved state";
+    return;
+  }
+
+  const { bsx, bsy, ssx, ssy, sig, phi } = savedState;
+  label.textContent = `Saved: $\\beta^*_x$=${bsx.toFixed(2)}, $\\beta^*_y$=${bsy.toFixed(2)}, $s^*_x$=${ssx.toFixed(2)}, $s^*_y$=${ssy.toFixed(2)}, $\\sigma_s$=${sig.toFixed(2)}, $\\phi$=${phi.toFixed(4)}`;
 }
 
 function initLuminosityPlot() {
@@ -72,6 +158,8 @@ function initLuminosityPlot() {
   const ssxInput = getElem("ssx-input");
   const ssyInput = getElem("ssy-input");
   const sigInput = getElem("sig-input");
+  const resetButton = getElem("reset-button");
+  const saveButton = getElem("save-button");
 
   const bsxValueSpan = getElem("bsx-value");
   const bsyValueSpan = getElem("bsy-value");
@@ -105,48 +193,51 @@ function initLuminosityPlot() {
     radio.addEventListener("change", () => {
       if (radio.checked) {
         activeParam = radio.value;  // e.g. "phi", "bsx", "bsy", ...
-
+        savedState = null;  // clear saved state
+        updateSavedStateLabel();
         updatePlot();
       }
     });
   });
 
-  // reset button 
-  const resetButton = getElem("reset-button");
-  resetButton.addEventListener("click", () => {
-    // Reset sliders
-    getElem("bsx-input").value = DEFAULTS.bsx;
-    getElem("bsy-input").value = DEFAULTS.bsy;
-    getElem("ssx-input").value = DEFAULTS.ssx;
-    getElem("ssy-input").value = DEFAULTS.ssy;
-    getElem("sig-input").value = DEFAULTS.sig;
-    getElem("phi-input").value = DEFAULTS.phi;
+  // Reset button
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      bsxInput.value = DEFAULTS.bsx;
+      bsyInput.value = DEFAULTS.bsy;
+      ssxInput.value = DEFAULTS.ssx;
+      ssyInput.value = DEFAULTS.ssy;
+      sigInput.value = DEFAULTS.sig;
+      phiInput.value = DEFAULTS.phi;
 
-    // Update text spans
-    getElem("bsx-value").textContent = DEFAULTS.bsx.toFixed(4);
-    getElem("bsy-value").textContent = DEFAULTS.bsy.toFixed(4);
-    getElem("ssx-value").textContent = DEFAULTS.ssx.toFixed(4);
-    getElem("ssy-value").textContent = DEFAULTS.ssy.toFixed(4);
-    getElem("sig-value").textContent = DEFAULTS.sig.toFixed(4);
-    getElem("phi-value").textContent = DEFAULTS.phi.toFixed(4);
+      bsxValueSpan.textContent = DEFAULTS.bsx.toFixed(4);
+      bsyValueSpan.textContent = DEFAULTS.bsy.toFixed(4);
+      ssxValueSpan.textContent = DEFAULTS.ssx.toFixed(4);
+      ssyValueSpan.textContent = DEFAULTS.ssy.toFixed(4);
+      sigValueSpan.textContent = DEFAULTS.sig.toFixed(4);
+      phiValueSpan.textContent = DEFAULTS.phi.toFixed(4);
 
-    // Reset scan parameter
-    activeParam = DEFAULTS.activeParam;
+      activeParam = DEFAULTS.activeParam;
+      savedState = null;
 
-    // Make phi radio checked by default
-    const phiRadio = document.querySelector('input[name="scan-param"][value="phi"]');
-    if (phiRadio) phiRadio.checked = true;
+      const phiRadio = document.querySelector('input[name="scan-param"][value="phi"]');
+      if (phiRadio) phiRadio.checked = true;
 
-    // Redraw plot
-    updatePlot();
-  });
+      updateSavedStateLabel();
+      updatePlot();
+    });
+  }
+
+  // Save state button
+  if (saveButton) {
+    saveButton.addEventListener("click", saveState);
+  }
 
   // make sure phi is selected by default
   const phiRadio = document.querySelector('input[name="scan-param"][value="phi"]');
   if (phiRadio) phiRadio.checked = true;
   activeParam = "phi";
-
-  // initial draw
+  updateSavedStateLabel();
 
   updatePlot();
 }
@@ -282,13 +373,29 @@ function updatePlot() {
     }
   };
 
+  // Blue trace (current state)
   const trace = {
     x: x,
     y: y,
     mode: "lines",
-    name: "Luminosity"
+    name: "Luminosity",
+    line: { color: "blue", width: 2 }
   };
-  
+
+  const traces = [trace];
+
+  // Grey trace (saved state, if exists)
+  if (savedState) {
+    const traceSaved = {
+      x: savedState.x,
+      y: savedState.y,
+      mode: "lines",
+      name: "Saved",
+      line: { color: "grey", width: 2, dash: "dash" }
+    };
+    traces.push(traceSaved);
+  }
+
   const shapes = [];
   if (xvert !== null) {
     shapes.push({
@@ -313,7 +420,7 @@ function updatePlot() {
     shapes: shapes
   };
 
-  Plotly.react(plotDiv, [trace], layout);
+  Plotly.react(plotDiv, traces, layout);
 }
 
 document.addEventListener("DOMContentLoaded", initLuminosityPlot);

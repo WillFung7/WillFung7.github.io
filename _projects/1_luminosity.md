@@ -172,6 +172,14 @@ The luminosity still takes the same form as $$L_{CA, HG}$$, but now it depends o
   <button id="reset-button" style="margin-top: 10px;">
   RESET
   </button>
+
+  <button id="save-button" style="margin-top: 10px; margin-left: 10px;">
+  SAVE STATE
+  </button>
+
+  <div id="saved-state-label" style="margin-top: 10px; font-size: 0.9em; color: #666;">
+    No saved state
+  </div>
  
 </div>
 

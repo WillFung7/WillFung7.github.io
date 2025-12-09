@@ -67,6 +67,15 @@ const DEFAULTS = {
   N: 200
 };
 
+// persistent noise realization
+let CURRENT_X_NOISE = null;
+let CURRENT_Y_NOISE = null;
+
+function resampleNoise(N, xn, yn) {
+  CURRENT_X_NOISE = Array.from({ length: N }, () => randomGaussian(0, xn));
+  CURRENT_Y_NOISE = Array.from({ length: N }, () => randomGaussian(0, yn));
+}
+
 function getElem(id) {
   return document.getElementById(id);
 }
@@ -121,6 +130,20 @@ function initLSPlot() {
 
   // reset button 
   const resetButton = getElem("reset-button");
+  const resampleButton = getElem("resample-button");
+
+  if (resampleButton) {
+    resampleButton.addEventListener("click", () => {
+      // use current sliders to resample with correct N/xn/yn
+      const xn = parseFloat(getElem("xn-input").value);
+      const yn = parseFloat(getElem("yn-input").value);
+      let N = DEFAULTS.N;
+      const NInputLocal = getElem("N-input");
+      if (NInputLocal) N = Math.max(1, parseInt(NInputLocal.value, 10) || DEFAULTS.N);
+      resampleNoise(N, xn, yn);
+      updatePlot();
+    });
+  }
   if (resetButton) {
     resetButton.addEventListener("click", () => {
       // Reset sliders (only set those that exist)
@@ -134,6 +157,10 @@ function initLSPlot() {
       if (getElem("yn-value")) getElem("yn-value").textContent = DEFAULTS.yn.toFixed(2);
       if (getElem("m-value")) getElem("m-value").textContent = DEFAULTS.m.toFixed(2);
       if (getElem("N-value")) getElem("N-value").textContent = DEFAULTS.N.toString();
+
+      // clear persistent noise so default behavior regenerates
+      CURRENT_X_NOISE = null;
+      CURRENT_Y_NOISE = null;
 
       // Redraw plot
       updatePlot();
@@ -160,9 +187,19 @@ function updatePlot() {
         N = Math.max(1, parseInt(NInput.value, 10) || DEFAULTS.N);
     }
 
-    // Generate noise
-    const x_noise = Array.from({ length: N }, () => randomGaussian(0, xn));
-    const y_noise = Array.from({ length: N }, () => randomGaussian(0, yn));
+    // Generate or reuse persistent noise
+    if (!CURRENT_X_NOISE || CURRENT_X_NOISE.length !== N) {
+      // if no saved realization, sample once and keep it until resample or reset
+      resampleNoise(N, xn, yn);
+    } else {
+      // If noise exists but stds changed, regenerate to reflect new stds
+      // (optional) regenerate when stds change — decide behavior:
+      // Here we regenerate only when user explicitly resamples; to regenerate automatically when std changed, uncomment below:
+      resampleNoise(N, xn, yn);
+    }
+
+    const x_noise = CURRENT_X_NOISE;
+    const y_noise = CURRENT_Y_NOISE;
     
     // True data
     const X_true = linspace(0, 10, N);
@@ -178,6 +215,16 @@ function updatePlot() {
     // TLS
     const [slope_TLS, intercept_TLS] = total_least_squares(X_obs, y_obs);
     const y_pred_TLS = X_true.map(xi => slope_TLS * xi + intercept_TLS);
+
+    // Update slope display
+    const slopeDisplay = getElem("slope-display");
+    if (slopeDisplay) {
+      slopeDisplay.innerHTML = `
+        <strong>True slope:</strong> ${m.toFixed(4)}<br>
+        <strong style="color: red;">OLS slope:</strong> ${slope_OLS.toFixed(4)}<br>
+        <strong style="color: green;">TLS slope:</strong> ${slope_TLS.toFixed(4)}
+      `;
+    }
 
     // Plot with Plotly
     const trace_obs = {
