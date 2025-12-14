@@ -12,3 +12,29 @@
 .control-row.disabled {
   opacity: 0.4;
 }
+
+.bpm-controls-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 700px;
+}
+
+.control-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* You already have .control-row styles; keep them */
+.control-row label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
