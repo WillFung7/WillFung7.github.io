@@ -1,5 +1,6 @@
 ---
 title: 1. Luminosity Optimization
+parent: 0. Projects
 has_children: true
 nav_order: 1
 layout: default

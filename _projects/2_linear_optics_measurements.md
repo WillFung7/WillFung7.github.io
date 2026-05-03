@@ -1,6 +1,5 @@
 ---
 title: 2. Linear Optics Measurements
-parent: 0. Projects
 has_children: true
 nav_order: 2
 layout: default

@@ -1,4 +1,4 @@
-// assets/js/mcmillan/sextupole_mcmillan.js
+// assets/js/4_phase_space_particle_tracking/sextupole_mcmillan.js
 
 function K0(p, q, a) {
   return p * p - a * p * q + q * q;
